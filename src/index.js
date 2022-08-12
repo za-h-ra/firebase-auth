@@ -1,7 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+import { auth } from "./authConfig";
+
 import {
-  getAuth,
-  AuthErrorCodes,
   onAuthStateChanged,
   connectAuthEmulator,
   signInWithEmailAndPassword,
@@ -9,32 +8,16 @@ import {
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js";
 
-// DOM Manipulation
-
-const loginBtn = document.querySelector("#loginBtn");
-const emailText = document.querySelector("#email-text");
-const passwordText = document.querySelector("#password-text");
-const loginErrorMsg = document.querySelector("#loginErrorMsg");
-const errorMsg = document.querySelector("#errorMsg");
-const signupBtn = document.querySelector("#signupBtn");
-const login = document.querySelector("#login");
-const screen = document.querySelector("#app");
-const authState = document.querySelector("#authState");
-const logoutBtn = document.querySelector("#logoutBtn");
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD4koinwSZIYkRP3lKzeHufr8QE0aDeok8",
-  authDomain: "zahra-auth.firebaseapp.com",
-  projectId: "zahra-auth",
-  storageBucket: "zahra-auth.appspot.com",
-  messagingSenderId: "329871843324",
-  appId: "1:329871843324:web:bdcab679ac7d73fbf45c79",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Auth State
+import {
+  showAppScreen,
+  showLoginScreen,
+  showLoginError,
+  hideLoginError,
+  showLoginState,
+  loginBtn,
+  signupBtn,
+  logoutBtn,
+} from "./ui";
 
 const monitorAuthState = async () => {
   onAuthStateChanged(auth, (user) => {
