@@ -12,6 +12,7 @@ const firebaseConfig = {
   projectId: "zahra-auth",
   storageBucket: "zahra-auth.appspot.com",
   messagingSenderId: "329871843324",
+  appId: "1:329871843324:web:bdcab679ac7d73fbf45c79",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -26,3 +27,25 @@ onAuthStateChanged(auth, (user) => {
 });
 
 connectAuthEmulator(auth, "http://localhost:9099");
+
+// DOM Manipulation
+
+const loginBtn = document.querySelector("#loginBtn");
+const emailText = document.querySelector("#email-text");
+const passwordText = document.querySelector("#password-text");
+
+const loginEmailPassword = async () => {
+  const loginEmail = emailText.value;
+  const loginPassword = passwordText.value;
+
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    loginEmail,
+    loginPassword
+  );
+  console.log(userCredential.user);
+};
+
+loginEmailPassword();
+
+loginBtn.addEventListener("click", loginEmailPassword);
