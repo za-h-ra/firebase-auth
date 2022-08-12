@@ -1,4 +1,5 @@
 import { auth } from "./authConfig.js";
+import { monitorAuthState } from "./authState.js";
 
 import {
   signInWithEmailAndPassword,
@@ -64,3 +65,5 @@ const logout = async () => {
 loginBtn.addEventListener("click", loginEmailPassword);
 signupBtn.addEventListener("click", createAccount);
 logoutBtn.addEventListener("click", logout);
+
+monitorAuthState();
