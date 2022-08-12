@@ -1,5 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js";
+import {
+  getAuth,
+  connectAuthEmulator,
+} from "https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD4koinwSZIYkRP3lKzeHufr8QE0aDeok8",
@@ -12,3 +15,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+// Auth Emulator
+connectAuthEmulator(auth, "http://localhost:9099");
