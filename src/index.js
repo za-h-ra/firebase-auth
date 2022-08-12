@@ -2,6 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase
 import {
   getAuth,
   onAuthStateChanged,
+  connectAuthEmulator,
+  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -22,3 +24,5 @@ onAuthStateChanged(auth, (user) => {
     console.log("User not found!");
   }
 });
+
+connectAuthEmulator(auth, "http://localhost:9099");
