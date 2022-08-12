@@ -20,5 +20,3 @@ export const monitorAuthState = async () => {
     }
   });
 };
-
-monitorAuthState();
