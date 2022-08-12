@@ -19,6 +19,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// Auth State
+
 onAuthStateChanged(auth, (user) => {
   if (user !== null) {
     console.log("Logged in!");
@@ -37,6 +39,8 @@ const passwordText = document.querySelector("#password-text");
 const loginErrorMsg = document.querySelector("#loginErrorMsg");
 const errorMsg = document.querySelector("#errorMsg");
 
+// error handling
+
 const showLoginError = (error) => {
   loginErrorMsg.style.display = "block";
   if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
@@ -44,6 +48,13 @@ const showLoginError = (error) => {
   } else {
     errorMsg.innerHTML = `Error: ${error.message}`;
   }
+};
+
+// hide error message
+
+const hideLoginError = () => {
+  loginErrorMsg.style.display = "none";
+  errorMsg.innerHTML = "";
 };
 
 const loginEmailPassword = async () => {
