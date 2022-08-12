@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
 import {
   getAuth,
+  AuthErrorCodes,
   onAuthStateChanged,
   connectAuthEmulator,
   signInWithEmailAndPassword,
@@ -33,17 +34,33 @@ connectAuthEmulator(auth, "http://localhost:9099");
 const loginBtn = document.querySelector("#loginBtn");
 const emailText = document.querySelector("#email-text");
 const passwordText = document.querySelector("#password-text");
+const loginErrorMsg = document.querySelector("#loginErrorMsg");
+const errorMsg = document.querySelector("#errorMsg");
+
+const showLoginError = (error) => {
+  loginErrorMsg.style.display = "block";
+  if (error.code == AuthErrorCodes.INVALID_PASSWORD) {
+    errorMsg.innerHTML = "Wrong Password. Try Again!";
+  } else {
+    errorMsg.innerHTML = `Error: ${error.message}`;
+  }
+};
 
 const loginEmailPassword = async () => {
   const loginEmail = emailText.value;
   const loginPassword = passwordText.value;
 
-  const userCredential = await signInWithEmailAndPassword(
-    auth,
-    loginEmail,
-    loginPassword
-  );
-  console.log(userCredential.user);
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      loginEmail,
+      loginPassword
+    );
+    console.log(userCredential.user);
+  } catch (error) {
+    console.log(error);
+    showLoginError(error);
+  }
 };
 
 loginEmailPassword();
