@@ -1,4 +1,4 @@
-import { auth } from "./authConfig";
+import { auth } from "./authConfig.js";
 
 import {
   signInWithEmailAndPassword,
@@ -6,7 +6,14 @@ import {
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js";
 
-import { showLoginError, loginBtn, signupBtn, logoutBtn } from "./ui";
+import {
+  showLoginError,
+  loginBtn,
+  signupBtn,
+  logoutBtn,
+  emailText,
+  passwordText,
+} from "./ui.js";
 
 // USER LOGIN
 
